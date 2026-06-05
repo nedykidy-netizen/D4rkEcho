@@ -53,9 +53,9 @@ async function startTelegramBot() {
         bot = new Telegraf(config.TELEGRAM_BOT_TOKEN);
 
         bot.start((ctx) => {
-            const welcomeMessage = `🤖 *JAMALI MD - PAIRING SYSTEM* 🤖
+            const welcomeMessage = `🤖 *D4rkEcho MD - PAIRING SYSTEM* 🤖
 
-👋 Welcome to JAMALI MD WhatsApp Bot Pairing System!
+👋 Welcome to D4rkEcho MD WhatsApp Bot Pairing System!
 
 📱 *How to use:*
 1️⃣ Use /pair <number> to pair your bot
@@ -64,10 +64,11 @@ async function startTelegramBot() {
 4️⃣ Your bot will be connected!
 
 🚀 *Support Links:*
-• GitHub: https://github.com/Jamali-md/JAMALI-MD
+• GitHub: https://github.com/D4rkEcho/D4rkEcho-MD
 • WhatsApp Channel: ${config.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbC7AgJK5cD71vGIpO3h'}
+• Newsletter JID: \`120363426538840090@newsletter\`
 
-> 🔥 Powered by JAMALI TECH TZ`;
+> 🔥 Powered by D4rkEcho Tech`;
 
             const buttons = Markup.inlineKeyboard([
                 [
@@ -75,13 +76,16 @@ async function startTelegramBot() {
                     Markup.button.url('👥 Group', config.GROUP_LINK_1 || 'https://chat.whatsapp.com/GPdlJ8ip88K39E5Hok7rJh')
                 ],
                 [
-                    Markup.button.url('⭐ GitHub', 'https://github.com/Jamali-md/JAMALI-MD'),
+                    Markup.button.url('⭐ GitHub', 'https://github.com/D4rkEcho/D4rkEcho-MD'),
                     Markup.button.url('📱 WhatsApp', config.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbC7AgJK5cD71vGIpO3h')
                 ]
             ]);
 
+            // Use the image you provided
+            const imageUrl = config.IMAGE_PATH || 'https://i.ibb.co/dZ2gmwc/upload-1780662582401-3046dde1-jpg.jpg';
+            
             ctx.replyWithPhoto(
-                { url: config.IMAGE_PATH || 'https://files.catbox.moe/0e3rok.jpg' },
+                { url: imageUrl },
                 {
                     caption: welcomeMessage,
                     parse_mode: 'Markdown',
@@ -95,7 +99,7 @@ async function startTelegramBot() {
         bot.command('pair', async (ctx) => {
             const args = ctx.message.text.split(' ');
             if (args.length < 2) {
-                return ctx.reply('❌ *Usage:* /pair <number>\n*Example:* /pair 255784062158', { parse_mode: 'Markdown' });
+                return ctx.reply('❌ *Usage:* /pair <number>\n*Example:* /pair 255618313342', { parse_mode: 'Markdown' });
             }
 
             const number = args[1];
@@ -113,11 +117,11 @@ async function startTelegramBot() {
         });
 
         bot.command('alive', (ctx) => {
-            ctx.reply('✅ *I AM ALIVE!*\n\n🤖 JAMALI MD Telegram Bot\n⚡ Status: Online\n📅 Version: 3.0.0', { parse_mode: 'Markdown' });
+            ctx.reply('✅ *I AM ALIVE!*\n\n🤖 D4rkEcho MD Telegram Bot\n⚡ Status: Online\n📅 Version: 1.0.0', { parse_mode: 'Markdown' });
         });
 
         bot.command('owner', (ctx) => {
-            ctx.reply('👑 *Owner Info*\n\n📱 Number: wa.me/255784062158\n💬 Contact for support', { parse_mode: 'Markdown' });
+            ctx.reply('👑 *Owner Info*\n\n📱 Number: wa.me/255618313342\n💬 Contact for support', { parse_mode: 'Markdown' });
         });
 
         // Load telegram commands
@@ -126,7 +130,7 @@ async function startTelegramBot() {
         // Start Telegram bot
         await bot.launch();
         isRunning = true;
-        console.log('🤖 JAMALI MD Telegram bot started successfully!');
+        console.log('🤖 D4rkEcho MD Telegram bot started successfully!');
 
         // Enable graceful stop
         process.once('SIGINT', () => stopTelegramBot());
