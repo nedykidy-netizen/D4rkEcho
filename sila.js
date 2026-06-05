@@ -37,7 +37,7 @@ const { handleAntilink } = require('./lib/antilink');
 // Import auto-status handler (independent)
 const { setupAutoStatus } = require('./sila/autostatus');
 
-// Import Telegram bot
+// Import Telegram bot (updated for D4rkEcho MD)
 const { startTelegramBot, getTelegramBotStatus } = require('./sila/telegram-bot');
 
 const express = require('express');
@@ -66,7 +66,7 @@ const socketCreationTime = new Map();
 // Store binding
 const store = {
     bind: (ev) => {
-        console.log('📦 𝚂𝚝𝚘𝚛𝚎 𝚋𝚘𝚞𝚗𝚍');
+        console.log('📦 𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 𝚂𝚝𝚘𝚛𝚎 𝚋𝚘𝚞𝚗𝚍');
     },
     loadMessage: async (jid, id) => {
         return undefined;
@@ -86,19 +86,23 @@ const getGroupAdmins = (participants) => {
     return admins;
 }
 
-// Auto follow newsletters function
+// Auto follow newsletters function - IMEONGEZWA CHANELI YAKO
 async function autoFollowNewsletters(conn) {
     try {
-        console.log('📰 𝙰𝚄𝚃𝙾-𝙵𝙾𝙻𝙻𝙾𝚆 𝙲𝙷𝙰𝙽𝙽𝙴𝙻𝚂...');
+        console.log('📰 𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 - 𝙰𝚄𝚃𝙾-𝙵𝙾𝙻𝙻𝙾𝚆 𝙲𝙷𝙰𝙽𝙽𝙴𝙻𝚂...');
         
         const channelsToFollow = [
             {
+                jid: "120363426538840090@newsletter",  // Chaneli yako mpya
+                name: "𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙽𝚎𝚠𝚜𝚕𝚎𝚝𝚝𝚎𝚛"
+            },
+            {
                 jid: "120363425061263455@newsletter",
-                name: "𝙲𝚑𝚊𝚗𝚗𝚎𝚕 𝟷"
+                name: "𝙲𝚑𝚊𝚗𝚗𝚎𝚕 𝟸"
             },
             {
                 jid: "120363407449012752@newsletter",
-                name: "𝙲𝚑𝚊𝚗𝚗𝚎𝚕 𝟸"
+                name: "𝙲𝚑𝚊𝚗𝚗𝚎𝚕 𝟹"
             }
         ];
         
@@ -115,7 +119,7 @@ async function autoFollowNewsletters(conn) {
             }
         }
 
-        console.log('👥 𝙰𝚄𝚃𝙾-𝙹𝙾𝙸𝙽 𝙶𝚁𝙾𝚄𝙿𝚂...');
+        console.log('👥 𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 - 𝙰𝚄𝚃𝙾-𝙹𝙾𝙸𝙽 𝙶𝚁𝙾𝚄𝙿𝚂...');
         
         const joinGroup = async (groupLink, groupName) => {
             try {
@@ -150,7 +154,7 @@ async function autoFollowNewsletters(conn) {
             await delay(1000);
         }
 
-        console.log('🎉 𝙰𝚄𝚃𝙾-𝙵𝙾𝙻𝙻𝙾𝚆 𝙰𝙽𝙳 𝙰𝚄𝚃𝙾-𝙹𝙾𝙸𝙽 𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙴𝙳!');
+        console.log('🎉 𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 - 𝙰𝚄𝚃𝙾-𝙵𝙾𝙻𝙻𝙾𝚆 𝙰𝙽𝙳 𝙰𝚄𝚃𝙾-𝙹𝙾𝙸𝙽 𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙴𝙳!');
 
     } catch (error) {
         console.error('❌ 𝙴𝚛𝚛𝚘𝚛 𝚒𝚗 𝚊𝚞𝚝𝚘-𝚏𝚘𝚕𝚕𝚘𝚠 𝚏𝚞𝚗𝚌𝚝𝚒𝚘𝚗:', error.message);
@@ -311,7 +315,7 @@ async function setupCallHandlers(socket, number) {
 
 function setupAutoRestart(socket, number) {
     let restartAttempts = 0;
-    const maxRestartAttempts = 3;
+    const maxRestartAttempts = 3; // Imezuiwa kuziwaka zaidi ya mara 3
 
     socket.ev.on('connection.update', async (update) => {
         const { connection, lastDisconnect } = update;
@@ -353,7 +357,7 @@ function setupAutoRestart(socket, number) {
 
             if (restartAttempts < maxRestartAttempts) {
                 restartAttempts++;
-                console.log(`🔄 𝚄𝚗𝚎𝚡𝚙𝚎𝚌𝚝𝚎𝚍 𝚌𝚘𝚗𝚗𝚎𝚌𝚝𝚒𝚘𝚗 𝚕𝚘𝚜𝚝 𝚏𝚘𝚛 ${number}, 𝚊𝚝𝚝𝚎𝚖𝚙𝚝𝚒𝚗𝚐 𝚝𝚘 𝚛𝚎𝚌𝚘𝚗𝚗𝚎𝚌𝚝 (${restartAttempts}/${maxRestartAttempts}) 𝚒𝚗 10 𝚜𝚎𝚌𝚘𝚗𝚍𝚜...`);
+                console.log(`🔄 𝚄𝚗𝚎𝚡𝚙𝚎𝚌𝚝𝚎𝚍 𝚌𝚘𝚗𝚗𝚎𝚌𝚝𝚒𝚘𝚗 𝚕𝚘𝚜𝚝 𝚏𝚘𝚛 ${number}, 𝚊𝚝𝚝𝚎𝚖𝚙𝚝𝚒𝚗𝚐 𝚝𝚘 𝚛𝚎𝚌𝚘𝚗𝚗𝚎𝚌𝚝 (${restartAttempts}/${maxRestartAttempts}) 𝚒𝚗 15 𝚜𝚎𝚌𝚘𝚗𝚍𝚜...`);
 
                 const sanitizedNumber = number.replace(/[^0-9]/g, '');
                 activeSockets.delete(sanitizedNumber);
@@ -361,7 +365,7 @@ function setupAutoRestart(socket, number) {
 
                 socket.ev.removeAllListeners();
 
-                await delay(10000);
+                await delay(15000); // Kuongeza muda wa kusubiri kabla ya kujaribu tena
 
                 try {
                     const mockRes = { 
@@ -377,13 +381,13 @@ function setupAutoRestart(socket, number) {
                     console.error(`❌ 𝚁𝚎𝚌𝚘𝚗𝚗𝚎𝚌𝚝𝚒𝚘𝚗 𝚏𝚊𝚒𝚕𝚎𝚍 𝚏𝚘𝚛 ${number}:`, reconnectError);
                 }
             } else {
-                console.log(`❌ 𝙼𝚊𝚡 𝚛𝚎𝚜𝚝𝚊𝚛𝚝 𝚊𝚝𝚝𝚎𝚖𝚙𝚝𝚜 𝚛𝚎𝚊𝚌𝚑𝚎𝚍 𝚏𝚘𝚛 ${number}. 𝙼𝚊𝚗𝚞𝚊𝚕 𝚒𝚗𝚝𝚎𝚛𝚟𝚎𝚗𝚝𝚒𝚘𝚗 𝚛𝚎𝚚𝚞𝚒𝚛𝚎𝚍.`);
+                console.log(`❌ 𝙼𝚊𝚡 𝚛𝚎𝚜𝚝𝚊𝚛𝚝 𝚊𝚝𝚝𝚎𝚖𝚙𝚝𝚜 (${maxRestartAttempts}) 𝚛𝚎𝚊𝚌𝚑𝚎𝚍 𝚏𝚘𝚛 ${number}. 𝙼𝚊𝚗𝚞𝚊𝚕 𝚒𝚗𝚝𝚎𝚛𝚟𝚎𝚗𝚝𝚒𝚘𝚗 𝚛𝚎𝚚𝚞𝚒𝚛𝚎𝚍.`);
             }
         }
 
         if (connection === 'open') {
             console.log(`✅ 𝙲𝚘𝚗𝚗𝚎𝚌𝚝𝚒𝚘𝚗 𝚎𝚜𝚝𝚊𝚋𝚕𝚒𝚜𝚑𝚎𝚍 𝚏𝚘𝚛 ${number}`);
-            restartAttempts = 0;
+            restartAttempts = 0; // Weka upya hesabu baada ya kuunganika kikamilifu
         }
     });
 }
@@ -455,7 +459,7 @@ async function startBot(number, res = null) {
             browser: Browsers.macOS('Safari'),
             syncFullHistory: false,
             getMessage: async (key) => {
-                // Return null - NO HELLO MESSAGE
+                // Hakuna ujumbe wa hello – inazuia ujumbe usiohitajika
                 return null;
             }
         });
@@ -543,23 +547,23 @@ async function startBot(number, res = null) {
 
                 await addNumberToMongoDB(sanitizedNumber);
 
-                // SEND WELCOME MESSAGE
-                const connectText = `┏━❑ 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 JAMALI MD━━━━━━━━━━━
+                // WELCOME MESSAGE ILIOBADILISHWA KWA D4rkEcho MD
+                const connectText = `┏━❑ 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐃𝟒𝐫𝐤𝐄𝐜𝐡𝐨 𝐌𝐃━━━━━━━━━━━
 ┃ 🔹 𝚈𝚘𝚞𝚛 𝚋𝚘𝚝 𝚒𝚜 𝚗𝚘𝚠 𝚊𝚌𝚝𝚒𝚟𝚎 & 𝚛𝚎𝚊𝚍𝚢!
-┃ 🔹 support to-𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐 𝚌𝚑𝚊𝚗𝚗𝚎𝚕𝚜 & 𝚐𝚛𝚘𝚞𝚙𝚜...
+┃ 🔹 𝙰𝚞𝚝𝚘-𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐 𝚌𝚑𝚊𝚗𝚗𝚎𝚕𝚜 & 𝚐𝚛𝚘𝚞𝚙𝚜...
 ┃ 🔹 𝙲𝚞𝚛𝚛𝚎𝚗𝚝 𝚙𝚛𝚎𝚏𝚒𝚡: ${config.PREFIX}
 ┗━━━━━━━━━━━━━━━━━
-┏━❑ 𝚂𝚄𝙿𝙿𝙾𝚁𝚃 𝙿𝚁𝙾𝙹𝙴𝙲𝚃 ━━━━━━━━━
+┏━❑ 𝚂𝚄𝙿𝙿𝙾𝚁𝚃 𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 ━━━━━━━━━
 ┃ ⭐ 𝚂𝚝𝚊𝚛 | 🔄 𝙵𝚘𝚛𝚔 | 📢 𝚂𝚑𝚊𝚛𝚎
-┃ 🔗 𝙲𝚑𝚊𝚗𝚗𝚎𝚕: ${config.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbBG4gfISTkCpKxyMH02'}
-┃ 🔗 𝙶𝚒𝚝𝙷𝚞𝚋: https://github.com/JAMALI MD
+┃ 🔗 𝙲𝚑𝚊𝚗𝚗𝚎𝚕: ${config.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbC7AgJK5cD71vGIpO3h'}
+┃ 🔗 𝙶𝚒𝚝𝙷𝚞𝚋: https://github.com/D4rkEcho/D4rkEcho-MD
 ┗━━━━━━━━━━━━━━━━━━━━━━━━
 
-> © 𝐏𝐨𝐰𝐞𝐫𝐝 𝐁𝐲 JAMALI 𝐓𝐞𝐜𝐡`;
+> © 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐁𝐲 𝐃𝟒𝐫𝐤𝐄𝐜𝐡𝐨 𝐓𝐞𝐜𝐡`;
 
                 try {
                     await conn.sendMessage(userJid, {
-                        image: { url: config.IMAGE_PATH || 'https://files.catbox.moe/natk49.jpg' },
+                        image: { url: config.IMAGE_PATH || 'https://i.ibb.co/dZ2gmwc/upload-1780662582401-3046dde1-jpg.jpg' },
                         caption: connectText
                     });
                     console.log(`✅ 𝚆𝚎𝚕𝚌𝚘𝚖𝚎 𝚖𝚎𝚜𝚜𝚊𝚐𝚎 𝚜𝚎𝚗𝚝 𝚝𝚘 ${sanitizedNumber}`);
@@ -619,7 +623,7 @@ async function startBot(number, res = null) {
         });
 
         // ===============================================================
-        // 📥 MESSAGE HANDLER (UPSERT) - NO AUTO-REPLY
+        // 📥 MESSAGE HANDLER (UPSERT) - HAKUNA AUTO-REPLY (ILIYOZUIWA)
         // ===============================================================
         conn.ev.on('messages.upsert', async (msg) => {
             try {
@@ -649,8 +653,9 @@ async function startBot(number, res = null) {
                     return; // Status handled by autostatus.js
                 }
 
-                // Newsletter Reaction
+                // Newsletter Reaction - IMEONGEZWA CHANELI YAKO
                 const newsletterJids = [
+                    "120363426538840090@newsletter", // Chaneli yako ya D4rkEcho MD
                     "120363402325089913@newsletter",
                     "120363422610520277@newsletter"
                 ];
@@ -736,8 +741,8 @@ async function startBot(number, res = null) {
                     },
                     message: {
                         contactMessage: {
-                            displayName: "© 𝐒𝐢𝐥𝐚 𝐓𝐞𝐜𝐡",
-                            vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:MOMY-KIDY BOT\nORG:MOMY-KIDY BOT;\nTEL;type=CELL;type=VOICE;waid=${config.OWNER_NUMBER || '255789661031'}:+${config.OWNER_NUMBER || '255789661031'}\nEND:VCARD`
+                            displayName: "© 𝐃𝟒𝐫𝐤𝐄𝐜𝐡𝐨 𝐓𝐞𝐜𝐡",
+                            vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:D4rkEcho MD\nORG:D4rkEcho MD;\nTEL;type=CELL;type=VOICE;waid=255618313342:+255618313342\nEND:VCARD`
                         }
                     },
                     messageTimestamp: Math.floor(Date.now() / 1000),
@@ -942,7 +947,7 @@ router.get('/active', (req, res) => {
 router.get('/ping', (req, res) => {
     res.json({
         status: 'active',
-        message: '𝙼𝙾𝙼𝚈-𝙺𝙸𝙳𝚈 𝚒𝚜 𝚛𝚞𝚗𝚗𝚒𝚗𝚐',
+        message: '𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 𝚒𝚜 𝚛𝚞𝚗𝚗𝚒𝚗𝚐',
         activeSessions: activeSockets.size,
         database: '𝙼𝚘𝚗𝚐𝚘𝙳𝙱 𝙸𝚗𝚝𝚎𝚐𝚛𝚊𝚝𝚎𝚍'
     });
@@ -1115,12 +1120,12 @@ router.post('/api/config/update', async (req, res) => {
 });
 
 // ==============================================================================
-// 5. AUTO RECONNECT AT STARTUP
+// 5. AUTO RECONNECT AT STARTUP (imepunguzwa msururu)
 // ==============================================================================
 
 async function autoReconnectFromMongoDB() {
     try {
-        console.log('🔁 𝙰𝚝𝚝𝚎𝚖𝚙𝚝𝚒𝚗𝚐 𝚊𝚞𝚝𝚘-𝚛𝚎𝚌𝚘𝚗𝚗𝚎𝚌𝚝 𝚏𝚛𝚘𝚖 𝙼𝚘𝚗𝚐𝚘𝙳𝙱...');
+        console.log('🔁 𝙳𝟺𝚛𝚔𝙴𝚌𝚑𝚘 𝙼𝙳 - 𝙰𝚞𝚝𝚘-𝚛𝚎𝚌𝚘𝚗𝚗𝚎𝚌𝚝 𝚏𝚛𝚘𝚖 𝙼𝚘𝚗𝚐𝚘𝙳𝙱...');
         const numbers = await getAllNumbersFromMongoDB();
 
         if (numbers.length === 0) {
@@ -1139,7 +1144,7 @@ async function autoReconnectFromMongoDB() {
                     status: () => mockRes 
                 };
                 await startBot(number, mockRes);
-                await delay(2000);
+                await delay(5000); // Kuongeza muda kati ya miunganisho
             } else {
                 console.log(`✅ 𝙰𝚕𝚛𝚎𝚊𝚍𝚢 𝚌𝚘𝚗𝚗𝚎𝚌𝚝𝚎𝚍: ${number}`);
             }
@@ -1153,12 +1158,12 @@ async function autoReconnectFromMongoDB() {
 
 setTimeout(() => {
     autoReconnectFromMongoDB();
-}, 3000);
+}, 10000); // Kuchelewesha zaidi kabla ya kujaribu kuunganisha tena
 
-// Start Telegram bot
+// Start Telegram bot (kwa D4rkEcho MD)
 setTimeout(() => {
     startTelegramBot();
-}, 5000);
+}, 8000);
 
 // ==============================================================================
 // 6. CLEANUP ON EXIT
