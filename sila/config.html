@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAMALI MD | Global Config</title>
+    <title>D4rkEcho MD | Global Config</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -23,14 +23,14 @@
 <a href="/dashboard" class="back"><i class="fas fa-arrow-left"></i> Back</a>
 <div class="container">
     <div class="glass-card">
-        <h2><i class="fas fa-sliders-h"></i> Global Configuration</h2>
+        <h2><i class="fas fa-sliders-h"></i> D4rkEcho MD • Global Config</h2>
         <div class="form-group"><label>Bot Prefix</label><input type="text" id="prefix" placeholder="." value="."></div>
         <div class="form-group"><label>Work Mode</label><select id="workType"><option>public</option><option>private</option><option>groups</option><option>inbox</option></select></div>
         <div class="form-group"><label>Auto View Status</label><select id="autoView"><option>true</option><option>false</option></select></div>
         <div class="form-group"><label>Auto Like Status</label><select id="autoLike"><option>true</option><option>false</option></select></div>
         <div class="form-group"><label>Auto Reply</label><select id="autoReply"><option>true</option><option>false</option></select></div>
-        <div class="form-group"><label>Anti-Call</label><select id="antiCall"><option>false</option><option>true</option></select></div>
-        <div class="form-group"><label>Anti-Delete</label><select id="antiDelete"><option>false</option><option>true</option></select></div>
+        <div class="form-group"><label>Anti-Call</label><select id="antiCall"><option>true</option><option>false</option></select></div>
+        <div class="form-group"><label>Anti-Delete</label><select id="antiDelete"><option>true</option><option>false</option></select></div>
         <button onclick="saveConfig()">Save Configuration</button>
     </div>
 </div>
@@ -43,8 +43,9 @@
         document.getElementById('autoView').value = cfg.AUTO_VIEW_STATUS || 'true';
         document.getElementById('autoLike').value = cfg.AUTO_LIKE_STATUS || 'true';
         document.getElementById('autoReply').value = cfg.AUTO_REPLY_ENABLE || 'true';
-        document.getElementById('antiCall').value = cfg.ANTI_CALL || 'false';
-        document.getElementById('antiDelete').value = cfg.ANTI_DELETE || 'false';
+        // Thamani chaguo-msingi kwa anti-call na anti-delete ni true (kama config yetu)
+        document.getElementById('antiCall').value = cfg.ANTI_CALL || 'true';
+        document.getElementById('antiDelete').value = cfg.ANTI_DELETE || 'true';
     }
     async function saveConfig() {
         let payload = {
@@ -61,7 +62,8 @@
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(payload)
         });
-        alert(res.ok ? 'Saved!' : 'Error');
+        alert(res.ok ? '✅ Configuration saved successfully!' : '❌ Error saving config');
+        if(res.ok) location.reload();
     }
     load();
 </script>
